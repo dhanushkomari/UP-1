@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+<link rel="stylesheet"
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+crossorigin="anonymous" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+crossorigin="anonymous">
+</script>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-
+bootstrap.min.css">
+<title>Voover</title>
+</head>
+<body>
+{{ form.media.css }}
+<div class="container">
+<h4 class="py-5 text-center" id="title">Field to be manually re-ordered and
+saved</h4>
+<form class="container-fluid col-md-8" method="POST" class="post-form"
+enctype="multipart/form-data">
+{% csrf_token %}
+<div class="form-group row">
+<div class="col-sm-10">
+{{ form.skills}}
+</div>
+</div>
+<div class="form-group row justify-content-center my-5">
+<button type="submit" class="save btn btn-default">Create
+Achivement</button>
+</div>
+</form>
+{{ form.media.js }}
+<script>
+$(document).ready(function (){
+$("#id_skills").djangoSelect2({
+allowClear: true,
+tokenSeparators: [',', ' ', ';'],
+theme:"bootstrap",
+language: {
+inputTooShort: function(args) {
+return "";
+} }
+});
+$("ul.select2-selection__rendered").sortable({
+containment: 'parent',
+});
+});
+</script>
+</div>
+</body>
+</html>
